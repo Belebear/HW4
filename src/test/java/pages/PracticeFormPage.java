@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class PracticeFormPage {
-    private SelenideElement firstName = $("#firstName"),
+    private final SelenideElement firstName = $("#firstName"),
             lastName = $("#lastName"),
             userEmail = $("#userEmail"),
             genterWrapper = $("#genterWrapper"),
