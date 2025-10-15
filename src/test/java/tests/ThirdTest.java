@@ -1,17 +1,13 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class ThirdTest extends BaseTest {
-
-    @AfterEach
-    public void tearDown() {
-        Selenide.closeWebDriver();
-    }
-
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
 
@@ -29,7 +25,7 @@ public class ThirdTest extends BaseTest {
                 .setStateCityWrapper("Select City")
                 .setCurrentAddress("aksjdh")
                 .setUploadPicture()
-                .setDateOfBirth("21", "1997", "July")
+                .setDateOfBirth("21", "July", "1997")
                 .setSubmit();
 
         practiceFormPage.checkResultTable("Student Name", "Maxim Barkalov")
@@ -56,7 +52,7 @@ public class ThirdTest extends BaseTest {
         practiceFormPage.checkResultTable("Student Name", "Maxim Barkalov")
                 .checkResultTable("Gender", "Male")
                 .checkResultTable("Mobile", "1231231231")
-                .checkResultTable("Date of Birth", "14 October,2025");
+                .checkResultTable("Date of Birth", LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM,yyyy", Locale.ENGLISH)));
 
         practiceFormPage.checkMinResultTable("Subjects")
                 .checkMinResultTable("Hobbies")
